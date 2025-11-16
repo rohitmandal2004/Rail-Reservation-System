@@ -150,6 +150,7 @@
                     <div class="booking-card-footer">
                         <button class="view-ticket-btn" onclick="viewTicketDetails('${ticket.ticketNumber}')">View Details</button>
                         <button class="download-ticket-btn" onclick="downloadTicketFromBooking('${ticket.ticketNumber}')">Download</button>
+                        <button class="cancel-ticket-btn" onclick="cancelBooking('${ticket.ticketNumber}')">Cancel</button>
                     </div>
                 `;
                 container.appendChild(bookingCard);

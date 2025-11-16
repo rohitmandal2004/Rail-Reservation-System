@@ -43,6 +43,77 @@ trains = [
             "SL": 550
         }
     }
+    ,
+    {
+        "train_no": 24001,
+        "name": "Kolkata - Bhubaneswar Express",
+        "from": "Kolkata",
+        "to": "Bhubaneswar",
+        "classes": { "1A": 3200, "2A": 2100, "3A": 1600, "3E": 1200, "SL": 500 }
+    },
+    {
+        "train_no": 24002,
+        "name": "Chennai - Coimbatore Intercity",
+        "from": "Chennai",
+        "to": "Coimbatore",
+        "classes": { "1A": 2200, "2A": 1600, "3A": 1200, "3E": 900, "SL": 350 }
+    },
+    {
+        "train_no": 24003,
+        "name": "Kochi - Trivandrum Express",
+        "from": "Kochi",
+        "to": "Trivandrum",
+        "classes": { "1A": 3000, "2A": 2000, "3A": 1500, "3E": 1100, "SL": 420 }
+    },
+    {
+        "train_no": 24004,
+        "name": "Ahmedabad - Surat Fast",
+        "from": "Ahmedabad",
+        "to": "Surat",
+        "classes": { "1A": 900, "2A": 700, "3A": 550, "3E": 400, "SL": 200 }
+    },
+    {
+        "train_no": 24005,
+        "name": "Varanasi - Lucknow Express",
+        "from": "Varanasi",
+        "to": "Lucknow",
+        "classes": { "1A": 1800, "2A": 1200, "3A": 900, "3E": 700, "SL": 300 }
+    },
+    {
+        "train_no": 24006,
+        "name": "Bhopal - Indore Fast",
+        "from": "Bhopal",
+        "to": "Indore",
+        "classes": { "1A": 1300, "2A": 900, "3A": 700, "3E": 550, "SL": 250 }
+    },
+    {
+        "train_no": 24007,
+        "name": "Patna - Ranchi Express",
+        "from": "Patna",
+        "to": "Ranchi",
+        "classes": { "1A": 2100, "2A": 1500, "3A": 1100, "3E": 850, "SL": 380 }
+    },
+    {
+        "train_no": 24008,
+        "name": "Mumbai - Pune Shatabdi",
+        "from": "Mumbai",
+        "to": "Pune",
+        "classes": { "1A": 1200, "2A": 800, "3A": 600, "3E": 0, "SL": 0 }
+    },
+    {
+        "train_no": 24009,
+        "name": "Agra - Mathura Express",
+        "from": "Agra",
+        "to": "Mathura",
+        "classes": { "1A": 400, "2A": 300, "3A": 220, "3E": 0, "SL": 80 }
+    },
+    {
+        "train_no": 24010,
+        "name": "Guwahati - Shillong Express",
+        "from": "Guwahati",
+        "to": "Shillong",
+        "classes": { "1A": 2500, "2A": 1700, "3A": 1200, "3E": 900, "SL": 420 }
+    }
 ]
 
 
