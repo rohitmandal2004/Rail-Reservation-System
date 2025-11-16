@@ -45,6 +45,21 @@
                         <option value="">-- All Stations --</option>
                     </select>
                 </div>
+                <div class="filter-group">
+                    <label for="filterDate">Filter by Date:</label>
+                    <input type="date" id="filterDate" class="filter-select" onchange="filterTrains()" min="">
+                </div>
+                <div class="filter-group">
+                    <label for="filterClass">Filter by Seat Category:</label>
+                    <select id="filterClass" class="filter-select" onchange="filterTrains()">
+                        <option value="">-- All Classes --</option>
+                        <option value="1A">1A (First Class)</option>
+                        <option value="2A">2A (Second Class)</option>
+                        <option value="3A">3A (Third Class)</option>
+                        <option value="3E">3E (Economy)</option>
+                        <option value="SL">SL (Sleeper)</option>
+                    </select>
+                </div>
                 <button class="reset-filter-btn" onclick="resetFilters()">Reset Filters</button>
             </div>
 
@@ -74,11 +89,43 @@
 
     <script src="script.js"></script>
     <script>
+        // Generate available dates for trains (next 30 days)
+        function generateAvailableDates() {
+            const dates = [];
+            const today = new Date();
+            for (let i = 0; i < 30; i++) {
+                const date = new Date(today);
+                date.setDate(today.getDate() + i);
+                dates.push(date.toISOString().split('T')[0]);
+            }
+            return dates;
+        }
+
+        // Add available dates to trains if not already present
+        function initializeTrainDates() {
+            trains.forEach(train => {
+                if (!train.availableDates) {
+                    train.availableDates = generateAvailableDates();
+                }
+            });
+        }
+
         // Initialize trains page
         document.addEventListener('DOMContentLoaded', function () {
+            initializeTrainDates();
+            setMinDate();
             displayAllTrainsOnPage();
             populateFilterDropdowns();
         });
+
+        // Set minimum date to today
+        function setMinDate() {
+            const today = new Date().toISOString().split('T')[0];
+            const dateInput = document.getElementById('filterDate');
+            if (dateInput) {
+                dateInput.min = today;
+            }
+        }
 
         function displayAllTrainsOnPage() {
             const container = document.getElementById('trainsListContainer');
@@ -116,6 +163,12 @@
                             </div>
                         `).join('')}
                     </div>
+                    ${train.availableDates ? `
+                    <div class="train-dates-info">
+                        <span class="dates-label">Available Dates:</span>
+                        <span class="dates-value">${train.availableDates.length} days available</span>
+                    </div>
+                    ` : ''}
                 `;
                 container.appendChild(trainCard);
             });
@@ -142,11 +195,20 @@
         function filterTrains() {
             const fromFilter = document.getElementById('filterFrom').value;
             const toFilter = document.getElementById('filterTo').value;
+            const dateFilter = document.getElementById('filterDate').value;
+            const classFilter = document.getElementById('filterClass').value;
             
             const filtered = trains.filter(train => {
                 const matchFrom = !fromFilter || train.from === fromFilter;
                 const matchTo = !toFilter || train.to === toFilter;
-                return matchFrom && matchTo;
+                
+                // Filter by date - check if train is available on selected date
+                const matchDate = !dateFilter || (train.availableDates && train.availableDates.includes(dateFilter));
+                
+                // Filter by seat category - check if train has the selected class
+                const matchClass = !classFilter || (train.classes && train.classes.hasOwnProperty(classFilter));
+                
+                return matchFrom && matchTo && matchDate && matchClass;
             });
 
             const container = document.getElementById('trainsListContainer');
@@ -189,6 +251,12 @@
                             </div>
                         `).join('')}
                     </div>
+                    ${train.availableDates ? `
+                    <div class="train-dates-info">
+                        <span class="dates-label">Available Dates:</span>
+                        <span class="dates-value">${train.availableDates.length} days available</span>
+                    </div>
+                    ` : ''}
                 `;
                 container.appendChild(trainCard);
             });
@@ -197,6 +265,8 @@
         function resetFilters() {
             document.getElementById('filterFrom').value = '';
             document.getElementById('filterTo').value = '';
+            document.getElementById('filterDate').value = '';
+            document.getElementById('filterClass').value = '';
             displayAllTrainsOnPage();
         }
 

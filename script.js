@@ -450,6 +450,142 @@ function selectTrain(trainNo) {
     }
 }
 
+// Toggle payment fields based on selected payment method
+function togglePaymentFields() {
+    const paymentMethod = document.getElementById('paymentMethod').value;
+    
+    // Hide all payment fields
+    document.getElementById('cardFields').style.display = 'none';
+    document.getElementById('upiFields').style.display = 'none';
+    document.getElementById('netbankingFields').style.display = 'none';
+    document.getElementById('walletFields').style.display = 'none';
+    
+    // Show relevant fields based on selection
+    if (paymentMethod === 'credit' || paymentMethod === 'debit') {
+        document.getElementById('cardFields').style.display = 'block';
+    } else if (paymentMethod === 'upi') {
+        document.getElementById('upiFields').style.display = 'block';
+    } else if (paymentMethod === 'netbanking') {
+        document.getElementById('netbankingFields').style.display = 'block';
+    } else if (paymentMethod === 'wallet') {
+        document.getElementById('walletFields').style.display = 'block';
+    }
+}
+
+// Format card number with spaces
+function formatCardNumber(input) {
+    let value = input.value.replace(/\s/g, '').replace(/[^0-9]/g, '');
+    let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+    input.value = formattedValue;
+}
+
+// Format expiry date as MM/YY
+function formatExpiry(input) {
+    let value = input.value.replace(/\D/g, '');
+    if (value.length >= 2) {
+        value = value.substring(0, 2) + '/' + value.substring(2, 4);
+    }
+    input.value = value;
+}
+
+// Validate payment information
+function validatePayment() {
+    const paymentMethod = document.getElementById('paymentMethod').value;
+    
+    if (!paymentMethod) {
+        alert('Please select a payment method');
+        return false;
+    }
+    
+    if (paymentMethod === 'credit' || paymentMethod === 'debit') {
+        const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
+        const cardExpiry = document.getElementById('cardExpiry').value;
+        const cardCVV = document.getElementById('cardCVV').value;
+        const cardName = document.getElementById('cardName').value.trim();
+        
+        if (!cardNumber || cardNumber.length < 16) {
+            alert('Please enter a valid card number');
+            return false;
+        }
+        if (!cardExpiry || cardExpiry.length !== 5) {
+            alert('Please enter a valid expiry date (MM/YY)');
+            return false;
+        }
+        if (!cardCVV || cardCVV.length < 3) {
+            alert('Please enter a valid CVV');
+            return false;
+        }
+        if (!cardName) {
+            alert('Please enter cardholder name');
+            return false;
+        }
+    } else if (paymentMethod === 'upi') {
+        const upiId = document.getElementById('upiId').value.trim();
+        if (!upiId || !upiId.includes('@')) {
+            alert('Please enter a valid UPI ID');
+            return false;
+        }
+    } else if (paymentMethod === 'netbanking') {
+        const bankName = document.getElementById('bankName').value;
+        const userId = document.getElementById('netbankingUserId').value.trim();
+        if (!bankName) {
+            alert('Please select a bank');
+            return false;
+        }
+        if (!userId) {
+            alert('Please enter your banking user ID');
+            return false;
+        }
+    } else if (paymentMethod === 'wallet') {
+        const walletType = document.getElementById('walletType').value;
+        const walletMobile = document.getElementById('walletMobile').value.trim();
+        if (!walletType) {
+            alert('Please select a wallet type');
+            return false;
+        }
+        if (!walletMobile || walletMobile.length < 10) {
+            alert('Please enter a valid mobile number');
+            return false;
+        }
+    }
+    
+    return true;
+}
+
+// Get payment details for display
+function getPaymentDetails() {
+    const paymentMethod = document.getElementById('paymentMethod').value;
+    let methodName = '';
+    let details = '';
+    
+    switch(paymentMethod) {
+        case 'credit':
+            methodName = 'Credit Card';
+            const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
+            details = `Card ending in ${cardNumber.slice(-4)}`;
+            break;
+        case 'debit':
+            methodName = 'Debit Card';
+            const debitCardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
+            details = `Card ending in ${debitCardNumber.slice(-4)}`;
+            break;
+        case 'upi':
+            methodName = 'UPI';
+            details = document.getElementById('upiId').value;
+            break;
+        case 'netbanking':
+            methodName = 'Net Banking';
+            details = document.getElementById('bankName').options[document.getElementById('bankName').selectedIndex].text;
+            break;
+        case 'wallet':
+            methodName = 'Wallet';
+            details = document.getElementById('walletType').value;
+            break;
+    }
+    
+    return { methodName, details };
+}
+
 // Book ticket
 function bookTicket(event) {
     event.preventDefault();
@@ -481,6 +617,11 @@ function bookTicket(event) {
         return;
     }
 
+    // Validate payment
+    if (!validatePayment()) {
+        return;
+    }
+
     const train = selectedTrain;
 
     if (!train || !train.classes[classType]) {
@@ -491,6 +632,9 @@ function bookTicket(event) {
     const pricePerSeat = train.classes[classType];
     const totalPrice = pricePerSeat * numSeats;
     const ticketNumber = generateTicketNumber();
+    
+    // Get payment details
+    const paymentInfo = getPaymentDetails();
 
     // Populate ticket
     document.getElementById('ticketNumberDisplay').textContent = `Ticket No: ${ticketNumber}`;
@@ -506,6 +650,15 @@ function bookTicket(event) {
     document.getElementById('ticketTrainNo').textContent = train.train_no;
     document.getElementById('ticketClass').textContent = classType;
     document.getElementById('ticketPrice').textContent = `₹${totalPrice}`;
+    
+    // Populate payment details
+    document.getElementById('ticketPaymentMethod').textContent = paymentInfo.methodName;
+    if (paymentInfo.details) {
+        document.getElementById('ticketPaymentDetails').textContent = paymentInfo.details;
+        document.getElementById('ticketPaymentDetailsRow').style.display = 'flex';
+    } else {
+        document.getElementById('ticketPaymentDetailsRow').style.display = 'none';
+    }
 
     // Generate QR code
     generateQRCode(ticketNumber, name, train, classType);
@@ -830,6 +983,20 @@ function resetBooking() {
     document.getElementById('phone').value = '';
     document.getElementById('numSeats').value = '1';
     document.getElementById('classSelect').value = '';
+    
+    // Reset payment fields
+    document.getElementById('paymentMethod').value = '';
+    document.getElementById('cardNumber').value = '';
+    document.getElementById('cardExpiry').value = '';
+    document.getElementById('cardCVV').value = '';
+    document.getElementById('cardName').value = '';
+    document.getElementById('upiId').value = '';
+    document.getElementById('bankName').value = '';
+    document.getElementById('netbankingUserId').value = '';
+    document.getElementById('walletType').value = '';
+    document.getElementById('walletMobile').value = '';
+    togglePaymentFields(); // Hide all payment fields
+    
     document.getElementById('searchResults').style.display = 'none';
     document.getElementById('quickSearchResults').style.display = 'none';
     document.getElementById('ticketForm').style.display = 'none';
