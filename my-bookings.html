@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings - RailYatra</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="train-icon">🚂</span>
+                <h1>RailYatra</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="my-bookings.html" class="nav-link active">My Booking</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- My Bookings Section -->
+    <section class="my-bookings-section">
+        <div class="container">
+            <div class="bookings-header">
+                <h2 class="section-title">My Bookings</h2>
+                <p class="bookings-subtitle">View all your booked tickets</p>
+            </div>
+
+            <div id="bookingsContainer" class="bookings-container">
+                <!-- Booked tickets will be displayed here -->
+            </div>
+
+            <div id="noBookingsMessage" class="no-bookings-message" style="display:none;">
+                <div class="no-bookings-icon">🎫</div>
+                <h3>No Bookings Yet</h3>
+                <p>You haven't booked any tickets yet. Start your journey by booking a ticket!</p>
+                <a href="index.html#booking" class="book-now-link">Book Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 RailYatra. All rights reserved.</p>
+            <p>Contact: support@railyatra.com | Phone: 1800-RAILYATRA</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Display all booked tickets
+        function displayBookedTickets() {
+            const tickets = getBookedTickets();
+            const container = document.getElementById('bookingsContainer');
+            const noBookingsMessage = document.getElementById('noBookingsMessage');
+
+            if (tickets.length === 0) {
+                container.style.display = 'none';
+                noBookingsMessage.style.display = 'block';
+                return;
+            }
+
+            container.style.display = 'block';
+            noBookingsMessage.style.display = 'none';
+            container.innerHTML = '';
+
+            // Sort tickets by booking date (newest first)
+            tickets.sort((a, b) => new Date(b.bookingDate) - new Date(a.bookingDate));
+
+            tickets.forEach((ticket, index) => {
+                const bookingCard = document.createElement('div');
+                bookingCard.className = 'booking-card';
+                bookingCard.style.animationDelay = (index * 0.1) + 's';
+                
+                const bookingDate = new Date(ticket.bookingDate);
+                const formattedDate = bookingDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+
+                bookingCard.innerHTML = `
+                    <div class="booking-card-header">
+                        <div class="booking-ticket-number">
+                            <span class="ticket-label">Ticket No:</span>
+                            <span class="ticket-number-value">${ticket.ticketNumber}</span>
+                        </div>
+                        <div class="booking-date">
+                            <span class="date-label">Booked on:</span>
+                            <span class="date-value">${formattedDate}</span>
+                        </div>
+                    </div>
+
+                    <div class="booking-card-body">
+                        <div class="booking-route">
+                            <div class="route-station">
+                                <span class="route-label">FROM</span>
+                                <span class="route-name">${ticket.from}</span>
+                            </div>
+                            <span class="route-arrow">→</span>
+                            <div class="route-station">
+                                <span class="route-label">TO</span>
+                                <span class="route-name">${ticket.to}</span>
+                            </div>
+                        </div>
+
+                        <div class="booking-details-grid">
+                            <div class="booking-detail-item">
+                                <span class="detail-label">Train:</span>
+                                <span class="detail-value">${ticket.trainName}</span>
+                            </div>
+                            <div class="booking-detail-item">
+                                <span class="detail-label">Train No:</span>
+                                <span class="detail-value">${ticket.trainNo}</span>
+                            </div>
+                            <div class="booking-detail-item">
+                                <span class="detail-label">Passenger:</span>
+                                <span class="detail-value">${ticket.passengerName}</span>
+                            </div>
+                            <div class="booking-detail-item">
+                                <span class="detail-label">Age:</span>
+                                <span class="detail-value">${ticket.age} years</span>
+                            </div>
+                            <div class="booking-detail-item">
+                                <span class="detail-label">Class:</span>
+                                <span class="detail-value">${ticket.classType}</span>
+                            </div>
+                            <div class="booking-detail-item">
+                                <span class="detail-label">Seats:</span>
+                                <span class="detail-value">${ticket.numSeats}</span>
+                            </div>
+                            <div class="booking-detail-item">
+                                <span class="detail-label">Payment:</span>
+                                <span class="detail-value">${ticket.paymentMethod}</span>
+                            </div>
+                            <div class="booking-detail-item">
+                                <span class="detail-label">Amount:</span>
+                                <span class="detail-value price-value">₹${ticket.price}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="booking-card-footer">
+                        <button class="view-ticket-btn" onclick="viewTicketDetails('${ticket.ticketNumber}')">View Details</button>
+                        <button class="download-ticket-btn" onclick="downloadTicketFromBooking('${ticket.ticketNumber}')">Download</button>
+                    </div>
+                `;
+                container.appendChild(bookingCard);
+            });
+        }
+
+        // View ticket details
+        function viewTicketDetails(ticketNumber) {
+            const tickets = getBookedTickets();
+            const ticket = tickets.find(t => t.ticketNumber === ticketNumber);
+            
+            if (ticket) {
+                // Store ticket in sessionStorage and redirect to view page
+                sessionStorage.setItem('viewTicket', JSON.stringify(ticket));
+                window.location.href = 'view-ticket.html';
+            }
+        }
+
+        // Download ticket
+        function downloadTicketFromBooking(ticketNumber) {
+            const tickets = getBookedTickets();
+            const ticket = tickets.find(t => t.ticketNumber === ticketNumber);
+            
+            if (ticket) {
+                const ticketContent = `
+═══════════════════════════════════════════════════════════════
+                    RAILWAY BOOKING TICKET
+═══════════════════════════════════════════════════════════════
+
+${ticket.ticketNumber}
+
+───────────────────────────────────────────────────────────────
+PASSENGER DETAILS
+───────────────────────────────────────────────────────────────
+Name:       ${ticket.passengerName}
+Age:        ${ticket.age} years
+Gender:     ${ticket.gender}
+Email:      ${ticket.email}
+Phone:      ${ticket.phone}
+
+───────────────────────────────────────────────────────────────
+JOURNEY DETAILS
+───────────────────────────────────────────────────────────────
+From:           ${ticket.from}
+To:             ${ticket.to}
+Train:          ${ticket.trainName}
+Train Number:   ${ticket.trainNo}
+Class:          ${ticket.classType}
+Seats:          ${ticket.numSeats}
+
+───────────────────────────────────────────────────────────────
+FARE DETAILS
+───────────────────────────────────────────────────────────────
+Ticket Price:   ₹${ticket.price}
+Payment Method: ${ticket.paymentMethod}
+
+───────────────────────────────────────────────────────────────
+Thank you for booking with us!
+Please carry this confirmation during your journey.
+═══════════════════════════════════════════════════════════════
+                `;
+
+                const element = document.createElement('a');
+                element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(ticketContent));
+                element.setAttribute('download', `railway-ticket-${ticketNumber}.txt`);
+                element.style.display = 'none';
+                document.body.appendChild(element);
+                element.click();
+                document.body.removeChild(element);
+            }
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            displayBookedTickets();
+        });
+    </script>
+</body>
+</html>
+

@@ -17,7 +17,7 @@
             </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#booking" class="nav-link">Booking</a></li>
+                <li><a href="my-bookings.html" class="nav-link">My Booking</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </div>
@@ -37,20 +37,114 @@
         <div class="container">
             <h2 class="section-title">Quick Search</h2>
             <div class="quick-search-form">
-                <div class="form-group-inline">
-                    <select id="quickSource" class="quick-input" required>
-                        <option value="">-- From Station --</option>
-                    </select>
+                <div class="form-group-inline autocomplete-wrapper">
+                    <div class="autocomplete-container floating-label-container">
+                        <input type="text" id="quickSource" class="quick-input autocomplete-input floating-input" placeholder=" " autocomplete="off" required>
+                        <label for="quickSource" class="floating-label">From - PLACES NAME</label>
+                        <div class="autocomplete-dropdown" id="quickSourceDropdown"></div>
+                    </div>
                 </div>
-                <div class="form-group-inline">
-                    <select id="quickDestination" class="quick-input" required>
-                        <option value="">-- To Station --</option>
-                    </select>
+                <div class="form-group-inline autocomplete-wrapper">
+                    <div class="autocomplete-container floating-label-container">
+                        <input type="text" id="quickDestination" class="quick-input autocomplete-input floating-input" placeholder=" " autocomplete="off" required>
+                        <label for="quickDestination" class="floating-label">To - PLACES NAME</label>
+                        <div class="autocomplete-dropdown" id="quickDestinationDropdown"></div>
+                    </div>
                 </div>
-                <button class="search-button-inline" onclick="quickSearchTrains()">Search</button>
-                <button class="view-all-button" onclick="goToTrainsPage()">View All Trains</button>
+                <button class="search-button-inline" onclick="quickSearchTrains()">
+                    <span class="button-icon">🔍</span>
+                    <span>Search</span>
+                </button>
+                <button class="view-all-button" onclick="goToTrainsPage()">
+                    <span class="button-icon">🚂</span>
+                    <span>View All Trains</span>
+                </button>
             </div>
             <div id="quickSearchResults" style="display:none; margin-top: 2rem;">
+                <div class="results-header">
+                    <h3>Available Trains</h3>
+                    <button class="toggle-filters-btn" onclick="toggleFilterPanel('quick')">
+                        <span class="filter-icon">🔍</span>
+                        <span>Filters</span>
+                    </button>
+                </div>
+                
+                <!-- Filter Panel for Quick Search -->
+                <div class="filter-panel" id="quickFilterPanel">
+                    <div class="filter-header">
+                        <h4>Filter Trains</h4>
+                        <button class="close-filters-btn" onclick="toggleFilterPanel('quick')">×</button>
+                    </div>
+                    
+                    <div class="filter-content">
+                        <!-- Class Type Filter -->
+                        <div class="filter-group">
+                            <label class="filter-label">Class Type</label>
+                            <div class="filter-checkboxes">
+                                <label class="filter-checkbox">
+                                    <input type="checkbox" class="filter-class-quick" value="SL" onchange="applyFilters('quick')">
+                                    <span>SL</span>
+                                </label>
+                                <label class="filter-checkbox">
+                                    <input type="checkbox" class="filter-class-quick" value="3A" onchange="applyFilters('quick')">
+                                    <span>3A</span>
+                                </label>
+                                <label class="filter-checkbox">
+                                    <input type="checkbox" class="filter-class-quick" value="2A" onchange="applyFilters('quick')">
+                                    <span>2A</span>
+                                </label>
+                                <label class="filter-checkbox">
+                                    <input type="checkbox" class="filter-class-quick" value="1A" onchange="applyFilters('quick')">
+                                    <span>1A</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Price Sort -->
+                        <div class="filter-group">
+                            <label class="filter-label">Sort by Price</label>
+                            <select class="filter-select" id="priceSortQuick" onchange="applyFilters('quick')">
+                                <option value="">No Sorting</option>
+                                <option value="low-high">Low to High</option>
+                                <option value="high-low">High to Low</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Departure Time Range -->
+                        <div class="filter-group">
+                            <label class="filter-label">Departure Time</label>
+                            <div class="time-range-inputs">
+                                <input type="time" class="filter-time" id="departureTimeFromQuick" onchange="applyFilters('quick')" placeholder="From">
+                                <span class="time-separator">to</span>
+                                <input type="time" class="filter-time" id="departureTimeToQuick" onchange="applyFilters('quick')" placeholder="To">
+                            </div>
+                        </div>
+                        
+                        <!-- Train Type Filter -->
+                        <div class="filter-group">
+                            <label class="filter-label">Train Type</label>
+                            <div class="filter-checkboxes">
+                                <label class="filter-checkbox">
+                                    <input type="checkbox" class="filter-train-type-quick" value="Express" onchange="applyFilters('quick')">
+                                    <span>Express</span>
+                                </label>
+                                <label class="filter-checkbox">
+                                    <input type="checkbox" class="filter-train-type-quick" value="Superfast" onchange="applyFilters('quick')">
+                                    <span>Superfast</span>
+                                </label>
+                                <label class="filter-checkbox">
+                                    <input type="checkbox" class="filter-train-type-quick" value="Rajdhani" onchange="applyFilters('quick')">
+                                    <span>Rajdhani</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Reset Filters -->
+                        <button class="reset-filters-btn" onclick="resetFilters('quick')">Reset All Filters</button>
+                    </div>
+                </div>
+                
+                <div class="results-count" id="quickResultsCount"></div>
                 <div class="search-results-list" id="quickResultsList"></div>
             </div>
         </div>
@@ -71,24 +165,109 @@
         <div class="container">
             <h2 class="section-title">Book Your Ticket</h2>
             <div class="booking-form">
-                <div class="form-group">
-                    <label for="source">From Station:</label>
-                    <select id="source" required>
-                        <option value="">-- Select Departure Station --</option>
-                    </select>
+                <div class="form-group autocomplete-wrapper">
+                    <div class="autocomplete-container floating-label-container">
+                        <input type="text" id="source" class="autocomplete-input floating-input" placeholder=" " autocomplete="off" required>
+                        <label for="source" class="floating-label">From - PLACES NAME</label>
+                        <div class="autocomplete-dropdown" id="sourceDropdown"></div>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="destination">To Station:</label>
-                    <select id="destination" required>
-                        <option value="">-- Select Arrival Station --</option>
-                    </select>
+                <div class="form-group autocomplete-wrapper">
+                    <div class="autocomplete-container floating-label-container">
+                        <input type="text" id="destination" class="autocomplete-input floating-input" placeholder=" " autocomplete="off" required>
+                        <label for="destination" class="floating-label">To - PLACES NAME</label>
+                        <div class="autocomplete-dropdown" id="destinationDropdown"></div>
+                    </div>
                 </div>
 
                 <button class="search-button" onclick="searchTrains()">Search Trains</button>
 
                 <div id="searchResults" style="display:none; margin-top: 30px;">
-                    <h3>Available Trains</h3>
+                    <div class="results-header">
+                        <h3>Available Trains</h3>
+                        <button class="toggle-filters-btn" onclick="toggleFilterPanel()">
+                            <span class="filter-icon">🔍</span>
+                            <span>Filters</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Filter Panel -->
+                    <div class="filter-panel" id="filterPanel">
+                        <div class="filter-header">
+                            <h4>Filter Trains</h4>
+                            <button class="close-filters-btn" onclick="toggleFilterPanel()">×</button>
+                        </div>
+                        
+                        <div class="filter-content">
+                            <!-- Class Type Filter -->
+                            <div class="filter-group">
+                                <label class="filter-label">Class Type</label>
+                                <div class="filter-checkboxes">
+                                    <label class="filter-checkbox">
+                                        <input type="checkbox" class="filter-class" value="SL" onchange="applyFilters()">
+                                        <span>SL</span>
+                                    </label>
+                                    <label class="filter-checkbox">
+                                        <input type="checkbox" class="filter-class" value="3A" onchange="applyFilters()">
+                                        <span>3A</span>
+                                    </label>
+                                    <label class="filter-checkbox">
+                                        <input type="checkbox" class="filter-class" value="2A" onchange="applyFilters()">
+                                        <span>2A</span>
+                                    </label>
+                                    <label class="filter-checkbox">
+                                        <input type="checkbox" class="filter-class" value="1A" onchange="applyFilters()">
+                                        <span>1A</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Price Sort -->
+                            <div class="filter-group">
+                                <label class="filter-label">Sort by Price</label>
+                                <select class="filter-select" id="priceSort" onchange="applyFilters()">
+                                    <option value="">No Sorting</option>
+                                    <option value="low-high">Low to High</option>
+                                    <option value="high-low">High to Low</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Departure Time Range -->
+                            <div class="filter-group">
+                                <label class="filter-label">Departure Time</label>
+                                <div class="time-range-inputs">
+                                    <input type="time" class="filter-time" id="departureTimeFrom" onchange="applyFilters()" placeholder="From">
+                                    <span class="time-separator">to</span>
+                                    <input type="time" class="filter-time" id="departureTimeTo" onchange="applyFilters()" placeholder="To">
+                                </div>
+                            </div>
+                            
+                            <!-- Train Type Filter -->
+                            <div class="filter-group">
+                                <label class="filter-label">Train Type</label>
+                                <div class="filter-checkboxes">
+                                    <label class="filter-checkbox">
+                                        <input type="checkbox" class="filter-train-type" value="Express" onchange="applyFilters()">
+                                        <span>Express</span>
+                                    </label>
+                                    <label class="filter-checkbox">
+                                        <input type="checkbox" class="filter-train-type" value="Superfast" onchange="applyFilters()">
+                                        <span>Superfast</span>
+                                    </label>
+                                    <label class="filter-checkbox">
+                                        <input type="checkbox" class="filter-train-type" value="Rajdhani" onchange="applyFilters()">
+                                        <span>Rajdhani</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Reset Filters -->
+                            <button class="reset-filters-btn" onclick="resetFilters()">Reset All Filters</button>
+                        </div>
+                    </div>
+                    
+                    <div class="results-count" id="resultsCount"></div>
                     <div class="search-results-list" id="resultsList"></div>
                 </div>
             </div>
