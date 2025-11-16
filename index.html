@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Railway Reservation System</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="train-icon">🚂</span>
+                <h1>RailYatra</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#trains" class="nav-link">Trains</a></li>
+                <li><a href="#booking" class="nav-link">Booking</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>Your Journey, Our Priority</h2>
+            <p>Book your railway tickets with ease and comfort</p>
+            <button class="cta-button" onclick="scrollToSection('booking')">Book Now</button>
+        </div>
+    </section>
+
+    <!-- Quick Search Section -->
+    <section class="quick-search-section">
+        <div class="container">
+            <h2 class="section-title">Quick Search</h2>
+            <div class="quick-search-form">
+                <div class="form-group-inline">
+                    <select id="quickSource" class="quick-input" required>
+                        <option value="">-- From Station --</option>
+                    </select>
+                </div>
+                <div class="form-group-inline">
+                    <select id="quickDestination" class="quick-input" required>
+                        <option value="">-- To Station --</option>
+                    </select>
+                </div>
+                <button class="search-button-inline" onclick="quickSearchTrains()">Search</button>
+                <button class="view-all-button" onclick="goToTrainsPage()">View All Trains</button>
+            </div>
+            <div id="quickSearchResults" style="display:none; margin-top: 2rem;">
+                <div class="search-results-list" id="quickResultsList"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Trains Section -->
+    <section class="trains-section" id="trains" style="display:none;">
+        <div class="container">
+            <h2 class="section-title">All Available Trains</h2>
+            <div class="trains-grid" id="trainsContainer">
+                <!-- Trains will be populated here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking-section" id="booking">
+        <div class="container">
+            <h2 class="section-title">Book Your Ticket</h2>
+            <div class="booking-form">
+                <div class="form-group">
+                    <label for="source">From Station:</label>
+                    <select id="source" required>
+                        <option value="">-- Select Departure Station --</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="destination">To Station:</label>
+                    <select id="destination" required>
+                        <option value="">-- Select Arrival Station --</option>
+                    </select>
+                </div>
+
+                <button class="search-button" onclick="searchTrains()">Search Trains</button>
+
+                <div id="searchResults" style="display:none; margin-top: 30px;">
+                    <h3>Available Trains</h3>
+                    <div class="search-results-list" id="resultsList"></div>
+                </div>
+            </div>
+
+            <!-- Passenger & Ticket Details -->
+            <div id="ticketForm" style="display:none; margin-top: 40px;">
+                <h3>Passenger Information</h3>
+                <form class="booking-form" onsubmit="bookTicket(event)">
+                    <div class="form-group">
+                        <label for="passengerName">Passenger Name:</label>
+                        <input type="text" id="passengerName" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age">Age:</label>
+                        <input type="number" id="age" placeholder="Enter your age" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender">Gender:</label>
+                        <select id="gender" required>
+                            <option value="">-- Select Gender --</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" placeholder="Enter your email address" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number:</label>
+                        <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="numSeats">Number of Seats:</label>
+                        <div class="seat-selector">
+                            <button type="button" class="seat-btn" onclick="decreaseSeats()">−</button>
+                            <input type="number" id="numSeats" value="1" min="1" max="6" readonly>
+                            <button type="button" class="seat-btn" onclick="increaseSeats()">+</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="classSelect">Class:</label>
+                        <select id="classSelect" required>
+                            <option value="">-- Choose a class --</option>
+                            <option value="1A">1A (First Class)</option>
+                            <option value="2A">2A (Second Class)</option>
+                            <option value="3A">3A (Third Class)</option>
+                            <option value="3E">3E (Economy)</option>
+                            <option value="SL">SL (Sleeper)</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="booking-button">Complete Booking</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Confirmation -->
+    <section id="confirmationSection" style="display:none;">
+        <div class="container">
+            <div class="confirmation-card">
+                <h2>✓ Booking Confirmed!</h2>
+                <div class="ticket-container">
+                    <div class="ticket">
+                        <div class="ticket-header">
+                            <div class="railway-logo">🚂 RailYatra</div>
+                            <div class="ticket-title">RAILWAY TICKET</div>
+                            <div class="ticket-number-display" id="ticketNumberDisplay"></div>
+                        </div>
+
+                        <div class="ticket-content">
+                                <div class="ticket-section">
+                                    <h4>Passenger Details</h4>
+                                    <div class="ticket-row">
+                                        <span class="label">Name:</span>
+                                        <span class="value" id="ticketName"></span>
+                                    </div>
+                                    <div class="ticket-row">
+                                        <span class="label">Age:</span>
+                                        <span class="value" id="ticketAge"></span>
+                                    </div>
+                                    <div class="ticket-row">
+                                        <span class="label">Gender:</span>
+                                        <span class="value" id="ticketGender"></span>
+                                    </div>
+                                    <div class="ticket-row">
+                                        <span class="label">Email:</span>
+                                        <span class="value" id="ticketEmail"></span>
+                                    </div>
+                                    <div class="ticket-row">
+                                        <span class="label">Phone:</span>
+                                        <span class="value" id="ticketPhone"></span>
+                                    </div>
+                                    <div class="ticket-row">
+                                        <span class="label">Number of Seats:</span>
+                                        <span class="value" id="ticketSeats"></span>
+                                    </div>
+                                </div>                            <div class="ticket-divider"></div>
+
+                            <div class="ticket-section">
+                                <h4>Journey Details</h4>
+                                <div class="journey-info">
+                                    <div class="station-info">
+                                        <span class="station-label">FROM</span>
+                                        <span class="station-name" id="ticketFrom"></span>
+                                    </div>
+                                    <div class="journey-arrow">→</div>
+                                    <div class="station-info">
+                                        <span class="station-label">TO</span>
+                                        <span class="station-name" id="ticketTo"></span>
+                                    </div>
+                                </div>
+
+                                <div class="ticket-row" style="margin-top: 1.5rem;">
+                                    <span class="label">Train:</span>
+                                    <span class="value" id="ticketTrain"></span>
+                                </div>
+                                <div class="ticket-row">
+                                    <span class="label">Train Number:</span>
+                                    <span class="value" id="ticketTrainNo"></span>
+                                </div>
+                                <div class="ticket-row">
+                                    <span class="label">Class:</span>
+                                    <span class="value" id="ticketClass"></span>
+                                </div>
+                            </div>
+
+                            <div class="ticket-divider"></div>
+
+                            <div class="ticket-section">
+                                <h4>Fare Details</h4>
+                                <div class="ticket-row fare-row">
+                                    <span class="label">Ticket Price:</span>
+                                    <span class="value fare-value" id="ticketPrice"></span>
+                                </div>
+                            </div>
+
+                            <div class="ticket-divider"></div>
+
+                            <div class="ticket-qr-section">
+                                <h4>Ticket Verification</h4>
+                                <div class="qr-container" id="qrCodeContainer"></div>
+                            </div>
+
+                            <div class="ticket-footer">
+                                <p>Thank you for booking with us!</p>
+                                <p style="font-size: 0.85rem; color: #666;">Please carry this confirmation during your journey</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="print-button" onclick="printTicket()">🖨️ Print Ticket</button>
+                    <button class="download-button" onclick="downloadTicket()">⬇️ Download PDF</button>
+                    <button class="new-booking-button" onclick="resetBooking()">➕ New Booking</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 RailYatra. All rights reserved.</p>
+            <p>Contact: support@railyatra.com | Phone: 1800-RAILYATRA</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Handle booking redirect from trains page
+        window.addEventListener('load', function() {
+            const bookingFrom = sessionStorage.getItem('bookingFrom');
+            const bookingTo = sessionStorage.getItem('bookingTo');
+            
+            if (bookingFrom && bookingTo) {
+                // Pre-fill the booking form
+                document.getElementById('source').value = bookingFrom;
+                document.getElementById('destination').value = bookingTo;
+                
+                // Clear the session storage
+                sessionStorage.removeItem('bookingFrom');
+                sessionStorage.removeItem('bookingTo');
+                
+                // Trigger search automatically
+                setTimeout(function() {
+                    searchTrains();
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>

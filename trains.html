@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Trains - RailYatra</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="train-icon">🚂</span>
+                <h1>RailYatra</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="trains.html" class="nav-link active">Trains</a></li>
+                <li><a href="index.html#booking" class="nav-link">Booking</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Trains List Section -->
+    <section class="trains-page-section">
+        <div class="container">
+            <div class="trains-page-header">
+                <h2 class="section-title">All Available Trains Across India</h2>
+                <p class="trains-page-subtitle">Browse all trains and their routes, classes, and pricing</p>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="trains-filter-section">
+                <div class="filter-group">
+                    <label for="filterFrom">Filter by Departure:</label>
+                    <select id="filterFrom" class="filter-select" onchange="filterTrains()">
+                        <option value="">-- All Stations --</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filterTo">Filter by Arrival:</label>
+                    <select id="filterTo" class="filter-select" onchange="filterTrains()">
+                        <option value="">-- All Stations --</option>
+                    </select>
+                </div>
+                <button class="reset-filter-btn" onclick="resetFilters()">Reset Filters</button>
+            </div>
+
+            <!-- Trains List -->
+            <div class="trains-list-container">
+                <div class="trains-list" id="trainsListContainer">
+                    <!-- Trains will be populated here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Home Button -->
+    <section class="back-section">
+        <div class="container">
+            <a href="index.html" class="back-home-btn">← Back to Home</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 RailYatra. All rights reserved.</p>
+            <p>Contact: support@railyatra.com | Phone: 1800-RAILYATRA</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize trains page
+        document.addEventListener('DOMContentLoaded', function () {
+            displayAllTrainsOnPage();
+            populateFilterDropdowns();
+        });
+
+        function displayAllTrainsOnPage() {
+            const container = document.getElementById('trainsListContainer');
+            container.innerHTML = '';
+
+            trains.forEach((train, index) => {
+                const trainCard = document.createElement('div');
+                trainCard.className = 'train-list-item';
+                trainCard.innerHTML = `
+                    <div class="train-list-header">
+                        <div>
+                            <h3>${train.name}</h3>
+                            <span class="train-number-badge">Train No: ${train.train_no}</span>
+                        </div>
+                        <button class="book-now-btn" onclick="bookFromPage('${train.from}', '${train.to}')">Book Now</button>
+                    </div>
+                    
+                    <div class="train-list-route">
+                        <div class="route-station">
+                            <span class="route-label">FROM</span>
+                            <span class="route-name">${train.from}</span>
+                        </div>
+                        <span class="route-arrow">→</span>
+                        <div class="route-station">
+                            <span class="route-label">TO</span>
+                            <span class="route-name">${train.to}</span>
+                        </div>
+                    </div>
+
+                    <div class="train-classes-grid">
+                        ${Object.entries(train.classes).map(([cls, price]) => `
+                            <div class="class-card">
+                                <span class="class-code">${cls}</span>
+                                <span class="class-price">₹${price}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(trainCard);
+            });
+        }
+
+        function populateFilterDropdowns() {
+            const stations = getUniqueStations();
+            
+            ['filterFrom', 'filterTo'].forEach(elementId => {
+                const select = document.getElementById(elementId);
+                const defaultOption = select.querySelector('option[value=""]');
+                select.innerHTML = '';
+                select.appendChild(defaultOption);
+                
+                stations.forEach(station => {
+                    const option = document.createElement('option');
+                    option.value = station;
+                    option.textContent = station;
+                    select.appendChild(option);
+                });
+            });
+        }
+
+        function filterTrains() {
+            const fromFilter = document.getElementById('filterFrom').value;
+            const toFilter = document.getElementById('filterTo').value;
+            
+            const filtered = trains.filter(train => {
+                const matchFrom = !fromFilter || train.from === fromFilter;
+                const matchTo = !toFilter || train.to === toFilter;
+                return matchFrom && matchTo;
+            });
+
+            const container = document.getElementById('trainsListContainer');
+            container.innerHTML = '';
+
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="no-trains-message">No trains found for the selected filters.</div>';
+                return;
+            }
+
+            filtered.forEach(train => {
+                const trainCard = document.createElement('div');
+                trainCard.className = 'train-list-item';
+                trainCard.innerHTML = `
+                    <div class="train-list-header">
+                        <div>
+                            <h3>${train.name}</h3>
+                            <span class="train-number-badge">Train No: ${train.train_no}</span>
+                        </div>
+                        <button class="book-now-btn" onclick="bookFromPage('${train.from}', '${train.to}')">Book Now</button>
+                    </div>
+                    
+                    <div class="train-list-route">
+                        <div class="route-station">
+                            <span class="route-label">FROM</span>
+                            <span class="route-name">${train.from}</span>
+                        </div>
+                        <span class="route-arrow">→</span>
+                        <div class="route-station">
+                            <span class="route-label">TO</span>
+                            <span class="route-name">${train.to}</span>
+                        </div>
+                    </div>
+
+                    <div class="train-classes-grid">
+                        ${Object.entries(train.classes).map(([cls, price]) => `
+                            <div class="class-card">
+                                <span class="class-code">${cls}</span>
+                                <span class="class-price">₹${price}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(trainCard);
+            });
+        }
+
+        function resetFilters() {
+            document.getElementById('filterFrom').value = '';
+            document.getElementById('filterTo').value = '';
+            displayAllTrainsOnPage();
+        }
+
+        function bookFromPage(from, to) {
+            // Store the train route in sessionStorage and redirect to home page
+            sessionStorage.setItem('bookingFrom', from);
+            sessionStorage.setItem('bookingTo', to);
+            window.location.href = `index.html#booking`;
+        }
+    </script>
+</body>
+</html>
