@@ -161,12 +161,6 @@ Feel free to open issues or pull requests.
 
 ---
 
-## 👨‍💻 Developer
-
-**Rohit Mandal**
-B.Tech CSE (AI/ML)
-Passionate Python Developer
-
 ---
 
 ## ⭐ Support
