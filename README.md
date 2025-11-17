@@ -43,19 +43,6 @@ A modern and interactive Python-based railway ticket booking system with smart s
 
 ---
 
-## 🖼 Screenshots
-
-(Add images inside `/screenshots/` folder)
-
-```
-<img width="1887" height="883" alt="Screenshot 2025-11-17 222057" src="https://github.com/user-attachments/assets/d32d9097-17de-498f-a4d0-bea78507f44f" />
-
-"C:\Users\rohit\OneDrive\Pictures\Screenshots\Screenshot 2025-11-17 222057.png"
-/screenshots/search.png
-/screenshots/booking.png
-/screenshots/ticket.png
-```
-
 ---
 
 ## 🧰 Tech Stack
