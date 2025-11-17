@@ -114,6 +114,77 @@ trains = [
         "to": "Shillong",
         "classes": { "1A": 2500, "2A": 1700, "3A": 1200, "3E": 900, "SL": 420 }
     }
+    ,
+    {
+        "train_no": 24011,
+        "name": "Sealdah - Howrah Local",
+        "from": "Sealdah",
+        "to": "Howrah",
+        "classes": { "SL": 30 }
+    },
+    {
+        "train_no": 24012,
+        "name": "Howrah - Asansol Express",
+        "from": "Howrah",
+        "to": "Asansol",
+        "classes": { "1A": 1200, "2A": 800, "3A": 600, "SL": 150 }
+    },
+    {
+        "train_no": 24013,
+        "name": "Kolkata - Haldia Passenger",
+        "from": "Kolkata",
+        "to": "Haldia",
+        "classes": { "SL": 120, "3A": 450 }
+    },
+    {
+        "train_no": 24014,
+        "name": "Sealdah - Lalgola Express",
+        "from": "Sealdah",
+        "to": "Lalgola",
+        "classes": { "2A": 900, "3A": 600, "SL": 200 }
+    },
+    {
+        "train_no": 24015,
+        "name": "Howrah - Kharagpur Intercity",
+        "from": "Howrah",
+        "to": "Kharagpur",
+        "classes": { "2A": 700, "3A": 500, "SL": 160 }
+    },
+    {
+        "train_no": 24016,
+        "name": "Kolkata - Bardhaman Local",
+        "from": "Kolkata",
+        "to": "Bardhaman",
+        "classes": { "SL": 90 }
+    },
+    {
+        "train_no": 24017,
+        "name": "Sealdah - New Jalpaiguri Express",
+        "from": "Sealdah",
+        "to": "New Jalpaiguri",
+        "classes": { "1A": 2800, "2A": 1800, "3A": 1200, "SL": 420 }
+    },
+    {
+        "train_no": 24018,
+        "name": "Howrah - Malda Town Express",
+        "from": "Howrah",
+        "to": "Malda Town",
+        "classes": { "2A": 1300, "3A": 900, "SL": 300 }
+    },
+    {
+        "train_no": 24019,
+        "name": "Kolkata - Digha Seaside Express",
+        "from": "Kolkata",
+        "to": "Digha",
+        "classes": { "3A": 700, "SL": 220 }
+    },
+    {
+        "train_no": 24020,
+        "name": "Sealdah - Howrah Fast Passenger",
+        "from": "Sealdah",
+        "to": "Howrah",
+        "classes": { "SL": 40 }
+    }
 ]
 
 

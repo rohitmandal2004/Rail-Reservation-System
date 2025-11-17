@@ -302,94 +302,94 @@ const trains = [
     }
     ,
     {
-        train_no: 24001,
-        name: "Kolkata - Bhubaneswar Express",
-        from: "Kolkata",
-        to: "Bhubaneswar",
-        departureTime: "07:40",
-        trainType: "Express",
-        classes: { "1A": 3200, "2A": 2100, "3A": 1600, "3E": 1200, "SL": 500 }
-    },
-    {
-        train_no: 24002,
-        name: "Chennai - Coimbatore Intercity",
-        from: "Chennai",
-        to: "Coimbatore",
-        departureTime: "09:00",
-        trainType: "Intercity",
-        classes: { "1A": 2200, "2A": 1600, "3A": 1200, "3E": 900, "SL": 350 }
-    },
-    {
-        train_no: 24003,
-        name: "Kochi - Trivandrum Express",
-        from: "Kochi",
-        to: "Trivandrum",
+        train_no: 24011,
+        name: "Sealdah - Howrah Local",
+        from: "Sealdah",
+        to: "Howrah",
         departureTime: "06:15",
+        trainType: "Local",
+        classes: { "SL": 30 }
+    },
+    {
+        train_no: 24012,
+        name: "Howrah - Asansol Express",
+        from: "Howrah",
+        to: "Asansol",
+        departureTime: "08:40",
         trainType: "Express",
-        classes: { "1A": 3000, "2A": 2000, "3A": 1500, "3E": 1100, "SL": 420 }
+        classes: { "1A": 1200, "2A": 800, "3A": 600, "SL": 150 }
     },
     {
-        train_no: 24004,
-        name: "Ahmedabad - Surat Fast",
-        from: "Ahmedabad",
-        to: "Surat",
-        departureTime: "13:20",
-        trainType: "Intercity",
-        classes: { "1A": 900, "2A": 700, "3A": 550, "3E": 400, "SL": 200 }
-    },
-    {
-        train_no: 24005,
-        name: "Varanasi - Lucknow Express",
-        from: "Varanasi",
-        to: "Lucknow",
-        departureTime: "15:00",
-        trainType: "Express",
-        classes: { "1A": 1800, "2A": 1200, "3A": 900, "3E": 700, "SL": 300 }
-    },
-    {
-        train_no: 24006,
-        name: "Bhopal - Indore Fast",
-        from: "Bhopal",
-        to: "Indore",
-        departureTime: "11:30",
-        trainType: "Intercity",
-        classes: { "1A": 1300, "2A": 900, "3A": 700, "3E": 550, "SL": 250 }
-    },
-    {
-        train_no: 24007,
-        name: "Patna - Ranchi Express",
-        from: "Patna",
-        to: "Ranchi",
-        departureTime: "18:10",
-        trainType: "Express",
-        classes: { "1A": 2100, "2A": 1500, "3A": 1100, "3E": 850, "SL": 380 }
-    },
-    {
-        train_no: 24008,
-        name: "Mumbai - Pune Shatabdi",
-        from: "Mumbai",
-        to: "Pune",
-        departureTime: "07:00",
-        trainType: "Shatabdi",
-        classes: { "1A": 1200, "2A": 800, "3A": 600, "3E": 0, "SL": 0 }
-    },
-    {
-        train_no: 24009,
-        name: "Agra - Mathura Express",
-        from: "Agra",
-        to: "Mathura",
-        departureTime: "10:45",
+        train_no: 24013,
+        name: "Kolkata - Haldia Passenger",
+        from: "Kolkata",
+        to: "Haldia",
+        departureTime: "07:20",
         trainType: "Passenger",
-        classes: { "1A": 400, "2A": 300, "3A": 220, "3E": 0, "SL": 80 }
+        classes: { "SL": 120, "3A": 450 }
     },
     {
-        train_no: 24010,
-        name: "Guwahati - Shillong Express",
-        from: "Guwahati",
-        to: "Shillong",
-        departureTime: "05:50",
+        train_no: 24014,
+        name: "Sealdah - Lalgola Express",
+        from: "Sealdah",
+        to: "Lalgola",
+        departureTime: "09:30",
         trainType: "Express",
-        classes: { "1A": 2500, "2A": 1700, "3A": 1200, "3E": 900, "SL": 420 }
+        classes: { "2A": 900, "3A": 600, "SL": 200 }
+    },
+    {
+        train_no: 24015,
+        name: "Howrah - Kharagpur Intercity",
+        from: "Howrah",
+        to: "Kharagpur",
+        departureTime: "12:10",
+        trainType: "Intercity",
+        classes: { "2A": 700, "3A": 500, "SL": 160 }
+    },
+    {
+        train_no: 24016,
+        name: "Kolkata - Bardhaman Local",
+        from: "Kolkata",
+        to: "Bardhaman",
+        departureTime: "05:55",
+        trainType: "Local",
+        classes: { "SL": 90 }
+    },
+    {
+        train_no: 24017,
+        name: "Sealdah - New Jalpaiguri Express",
+        from: "Sealdah",
+        to: "New Jalpaiguri",
+        departureTime: "22:00",
+        trainType: "Superfast",
+        classes: { "1A": 2800, "2A": 1800, "3A": 1200, "SL": 420 }
+    },
+    {
+        train_no: 24018,
+        name: "Howrah - Malda Town Express",
+        from: "Howrah",
+        to: "Malda Town",
+        departureTime: "16:50",
+        trainType: "Express",
+        classes: { "2A": 1300, "3A": 900, "SL": 300 }
+    },
+    {
+        train_no: 24019,
+        name: "Kolkata - Digha Seaside Express",
+        from: "Kolkata",
+        to: "Digha",
+        departureTime: "10:30",
+        trainType: "Express",
+        classes: { "3A": 700, "SL": 220 }
+    },
+    {
+        train_no: 24020,
+        name: "Sealdah - Howrah Fast Passenger",
+        from: "Sealdah",
+        to: "Howrah",
+        departureTime: "18:05",
+        trainType: "Passenger",
+        classes: { "SL": 40 }
     }
 ];
 
@@ -474,8 +474,6 @@ function getStationCodesForCity(cityName) {
 
 // Store selected city and station codes for each input
 const cityDataMap = {
-    quickSource: { city: null, codes: [] },
-    quickDestination: { city: null, codes: [] },
     source: { city: null, codes: [] },
     destination: { city: null, codes: [] }
 };
@@ -487,8 +485,6 @@ document.addEventListener('DOMContentLoaded', function () {
     setupEnterKeySearch();
     initializeAutocomplete();
     setupFloatingLabels();
-    // Populate station lists if inputs already have values (e.g., pre-fill)
-    populateStationListsFromInputs();
 });
 
 // Filter Panel Functions
@@ -607,16 +603,7 @@ function setupFloatingLabels() {
 
 // Setup Enter key for search fields
 function setupEnterKeySearch() {
-    document.getElementById('quickSource').addEventListener('keypress', function (e) {
-        if (e.key === 'Enter' && document.getElementById('quickDestination').value) {
-            quickSearchTrains();
-        }
-    });
-    document.getElementById('quickDestination').addEventListener('keypress', function (e) {
-        if (e.key === 'Enter' && document.getElementById('quickSource').value) {
-            quickSearchTrains();
-        }
-    });
+    // Quick-search inputs were removed; only wire main search enter keys
     document.getElementById('source').addEventListener('keypress', function (e) {
         if (e.key === 'Enter' && document.getElementById('destination').value) {
             searchTrains();
@@ -631,8 +618,6 @@ function setupEnterKeySearch() {
 
 // Initialize autocomplete for all input fields
 function initializeAutocomplete() {
-    setupAutocomplete('quickSource', 'quickSourceDropdown');
-    setupAutocomplete('quickDestination', 'quickDestinationDropdown');
     setupAutocomplete('source', 'sourceDropdown');
     setupAutocomplete('destination', 'destinationDropdown');
 }
@@ -646,27 +631,64 @@ function setupAutocomplete(inputId, dropdownId) {
 
     // Debounce function to limit API calls
     let debounceTimer;
-    const debounceDelay = 300;
+    const isBookingInput = inputId === 'source' || inputId === 'destination';
+    const debounceDelay = isBookingInput ? 80 : 300;
 
     input.addEventListener('input', function () {
         const query = this.value.trim();
         
         clearTimeout(debounceTimer);
         
-        if (query.length < 2) {
+        // For booking inputs (source/destination) show station suggestions even for short queries
+        const isBookingInput = inputId === 'source' || inputId === 'destination';
+        if (query.length < 2 && !isBookingInput) {
             dropdown.style.display = 'none';
             dropdown.classList.remove('dropdown-show');
             return;
         }
 
         debounceTimer = setTimeout(async () => {
-            await fetchSuggestions(query, dropdown, input);
+            // If booking input, prefer station suggestions (local) when API unavailable or query short
+            if (isBookingInput) {
+                // Try API first for cities/stations, otherwise fallback to stations list
+                try {
+                    const response = await fetch(`${API_BASE_URL}/search/suggestions?q=${encodeURIComponent(query)}`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        const suggestions = data.suggestions || [];
+                        if (suggestions.length > 0) {
+                            displaySuggestions(suggestions, dropdown, input);
+                            return;
+                        }
+                    }
+                } catch (e) {
+                    // ignore and fallback to stations
+                }
+                fallbackStationSearch(query, dropdown, input);
+            } else {
+                await fetchSuggestions(query, dropdown, input);
+            }
         }, debounceDelay);
     });
 
     input.addEventListener('focus', function () {
-        if (this.value.trim().length >= 2 && suggestions.length > 0) {
-            dropdown.style.display = 'block';
+        const q = this.value.trim();
+        const isBookingInput = inputId === 'source' || inputId === 'destination';
+        // For booking inputs, show station list on focus even when empty
+        if (isBookingInput) {
+            // If there is text, run the normal suggestion flow
+            if (q.length >= 1) {
+                fetchSuggestions(q, dropdown, input).catch(() => fallbackStationSearch(q, dropdown, input));
+            } else {
+                // show top stations / all stations to let user pick
+                fallbackStationSearch('', dropdown, input);
+            }
+            return;
+        }
+
+        // Non-booking inputs: only fetch when there's some text
+        if (q.length >= 1) {
+            fetchSuggestions(q, dropdown, input);
         }
     });
 
@@ -732,15 +754,26 @@ async function fetchSuggestions(query, dropdown, input) {
 // Fallback search using local city data (NOT stations)
 function fallbackCitySearch(query, dropdown, input) {
     const queryLower = query.toLowerCase();
-    
-    // Filter cities that match the query
-    const suggestions = ALL_CITIES.filter(city => {
+
+    // Start with configured city list
+    const cityMatches = ALL_CITIES.filter(city => {
         const cityLower = city.toLowerCase();
         return cityLower.startsWith(queryLower) || cityLower.includes(queryLower);
-    }).slice(0, 10);
-    
-    // Sort: exact matches first
-    suggestions.sort((a, b) => {
+    });
+
+    // Also include station names extracted from trains (like Howrah, Sealdah, Kolkata)
+    const stationList = getUniqueStations();
+    const stationMatches = stationList.filter(st => {
+        const stLower = st.toLowerCase();
+        return stLower.startsWith(queryLower) || stLower.includes(queryLower);
+    });
+
+    // Merge and deduplicate while preserving order: cities first then stations
+    const merged = [...cityMatches, ...stationMatches];
+    const unique = Array.from(new Set(merged)).slice(0, 12);
+
+    // Sort with exact-start matches first, then alphabetical
+    unique.sort((a, b) => {
         const aLower = a.toLowerCase();
         const bLower = b.toLowerCase();
         const aStarts = aLower.startsWith(queryLower);
@@ -749,8 +782,40 @@ function fallbackCitySearch(query, dropdown, input) {
         if (!aStarts && bStarts) return 1;
         return aLower.localeCompare(bLower);
     });
-    
-    displaySuggestions(suggestions, dropdown, input);
+
+    displaySuggestions(unique, dropdown, input);
+}
+
+// Fallback station search using station names extracted from trains
+function fallbackStationSearch(query, dropdown, input) {
+    const queryLower = query.toLowerCase();
+
+    // Get full station list from trains
+    const stationList = getUniqueStations();
+
+    // If query is empty, show a short list of popular/first stations
+    let matches;
+    if (!queryLower) {
+        matches = stationList.slice(0, 12);
+    } else {
+        matches = stationList.filter(st => {
+            const stLower = st.toLowerCase();
+            return stLower.startsWith(queryLower) || stLower.includes(queryLower);
+        }).slice(0, 12);
+    }
+
+    // Sort with prefix matches first
+    matches.sort((a, b) => {
+        const aLower = a.toLowerCase();
+        const bLower = b.toLowerCase();
+        const aStarts = aLower.startsWith(queryLower);
+        const bStarts = bLower.startsWith(queryLower);
+        if (aStarts && !bStarts) return -1;
+        if (!aStarts && bStarts) return 1;
+        return aLower.localeCompare(bLower);
+    });
+
+    displaySuggestions(matches, dropdown, input);
 }
 
 // Display suggestions in dropdown (cities only)
@@ -813,9 +878,6 @@ function displaySuggestions(suggestions, dropdown, input) {
                 input.classList.remove('city-selected');
             }, 1000);
             
-            // Render station list for this input (shows station codes under the input)
-            renderStationList(inputId, stationCodes);
-
             // Trigger change event
             input.dispatchEvent(new Event('input', { bubbles: true }));
         });
@@ -824,73 +886,6 @@ function displaySuggestions(suggestions, dropdown, input) {
     });
     
     dropdown.style.display = 'block';
-}
-
-// Render station list (clickable) under an input's station-list container
-function renderStationList(inputId, stationCodes) {
-    const listId = `${inputId}StationList`;
-    const listEl = document.getElementById(listId);
-    if (!listEl) return;
-    listEl.innerHTML = '';
-    if (!stationCodes || stationCodes.length === 0) {
-        listEl.classList.remove('visible');
-        listEl.setAttribute('aria-hidden', 'true');
-        return;
-    }
-
-    // Create a select dropdown for station names/codes
-    const select = document.createElement('select');
-    select.className = 'station-select';
-    select.setAttribute('aria-label', 'Select station code');
-
-    const placeholder = document.createElement('option');
-    placeholder.value = '';
-    placeholder.disabled = true;
-    placeholder.selected = true;
-    placeholder.textContent = 'Choose station';
-    select.appendChild(placeholder);
-
-    stationCodes.forEach(code => {
-        const opt = document.createElement('option');
-        opt.value = code;
-        opt.textContent = code;
-        select.appendChild(opt);
-    });
-
-    // When user selects a station code, update input and store selection
-    select.addEventListener('change', () => {
-        const code = select.value;
-        cityDataMap[inputId] = cityDataMap[inputId] || {};
-        cityDataMap[inputId].selectedStation = code;
-
-        const input = document.getElementById(inputId);
-        if (input) {
-            const city = cityDataMap[inputId].city || input.value || '';
-            input.value = city + (code ? ` (${code})` : '');
-            input.dataset.selectedStation = code;
-            input.dispatchEvent(new Event('input', { bubbles: true }));
-        }
-    });
-
-    listEl.appendChild(select);
-    listEl.classList.add('visible');
-    listEl.setAttribute('aria-hidden', 'false');
-}
-
-// If inputs are pre-filled, populate station lists
-function populateStationListsFromInputs() {
-    const inputIds = Object.keys(cityDataMap);
-    inputIds.forEach(id => {
-        const input = document.getElementById(id);
-        if (input && input.value && input.value.trim() !== '') {
-            const cityGuess = input.value.trim().split(' (')[0];
-            const codes = getStationCodesForCity(cityGuess);
-            if (codes.length > 0) {
-                cityDataMap[id] = { city: cityGuess, codes: codes };
-                renderStationList(id, codes);
-            }
-        }
-    });
 }
 
 // Display all trains in the trains section
@@ -965,39 +960,8 @@ function searchTrains() {
 
 // Quick search from quick search section
 function quickSearchTrains() {
-    const sourceInput = document.getElementById('quickSource');
-    const destinationInput = document.getElementById('quickDestination');
-    const source = sourceInput.value.trim();
-    const destination = destinationInput.value.trim();
-
-    if (!source || !destination) {
-        alert('Please enter both source and destination places');
-        return;
-    }
-
-    // Get station codes for backend (if city is selected)
-    const sourceData = cityDataMap['quickSource'];
-    const destData = cityDataMap['quickDestination'];
-    const sourceCodes = sourceData?.codes || getStationCodesForCity(source);
-    const destCodes = destData?.codes || getStationCodesForCity(destination);
-
-    // Log station codes for backend
-    console.log('Source City:', source, 'Station Codes:', sourceCodes);
-    console.log('Destination City:', destination, 'Station Codes:', destCodes);
-
-    // Search trains by city name
-    const results = trains.filter(train =>
-        train.from.toLowerCase() === source.toLowerCase() &&
-        train.to.toLowerCase() === destination.toLowerCase()
-    );
-
-    // Store station codes for potential backend API call
-    if (results.length > 0 && (sourceCodes.length > 0 || destCodes.length > 0)) {
-        // You can send station codes to backend here
-        // Example: sendToBackend({ sourceCodes, destCodes, results });
-    }
-
-    displaySearchResults(results, 'quickResultsList', 'quickSearchResults');
+    // quickSearchTrains removed — quick-search UI no longer present
+    console.warn('quickSearchTrains() called but quick-search UI was removed. Use main search instead.');
 }
 
 // Helper function to send station codes to backend (example)
@@ -1033,6 +997,12 @@ let currentResultType = ''; // 'main' or 'quick'
 function displaySearchResults(results, resultContainerId, resultsContainerId) {
     const resultsContainer = document.getElementById(resultsContainerId);
     const resultsList = document.getElementById(resultContainerId);
+
+    // If the target elements don't exist (e.g., quick-search was removed), bail out safely
+    if (!resultsContainer || !resultsList) {
+        console.warn('Results container or list not found:', resultsContainerId, resultContainerId);
+        return;
+    }
 
     // Store results for filtering
     currentSearchResults = results;
@@ -1291,11 +1261,9 @@ function bookTicket(event) {
     // Get payment details
     const paymentInfo = getPaymentDetails();
     
-    // Create ticket object (pending) and show booking summary for confirmation
-    const pnr = generatePNR();
+    // Create ticket object to save
     const ticketData = {
         ticketNumber: ticketNumber,
-        pnr: pnr,
         passengerName: name,
         age: age,
         gender: gender,
@@ -1312,16 +1280,50 @@ function bookTicket(event) {
         paymentDetails: paymentInfo.details || '',
         bookingDate: new Date().toISOString()
     };
+    
+    // Save ticket to localStorage
+    saveTicketToStorage(ticketData);
 
-    // Show booking summary modal for user to confirm
-    showBookingSummaryModal(ticketData);
+    // Populate ticket
+    document.getElementById('ticketNumberDisplay').textContent = `Ticket No: ${ticketNumber}`;
+    document.getElementById('ticketName').textContent = name;
+    document.getElementById('ticketAge').textContent = `${age} years`;
+    document.getElementById('ticketGender').textContent = gender;
+    document.getElementById('ticketEmail').textContent = email;
+    document.getElementById('ticketPhone').textContent = phone;
+    document.getElementById('ticketSeats').textContent = `${numSeats} Seat(s)`;
+    document.getElementById('ticketFrom').textContent = train.from;
+    document.getElementById('ticketTo').textContent = train.to;
+    document.getElementById('ticketTrain').textContent = train.name;
+    document.getElementById('ticketTrainNo').textContent = train.train_no;
+    document.getElementById('ticketClass').textContent = classType;
+    document.getElementById('ticketPrice').textContent = `₹${totalPrice}`;
+    
+    // Populate payment details
+    document.getElementById('ticketPaymentMethod').textContent = paymentInfo.methodName;
+    if (paymentInfo.details) {
+        document.getElementById('ticketPaymentDetails').textContent = paymentInfo.details;
+        document.getElementById('ticketPaymentDetailsRow').style.display = 'flex';
+    } else {
+        document.getElementById('ticketPaymentDetailsRow').style.display = 'none';
+    }
+
+    // Generate QR code
+    generateQRCode(ticketNumber, name, train, classType);
+
+    document.getElementById('confirmationSection').style.display = 'block';
+    document.getElementById('searchResults').style.display = 'none';
+    const quickResultsEl = document.getElementById('quickSearchResults');
+    if (quickResultsEl) quickResultsEl.style.display = 'none';
+    document.getElementById('ticketForm').style.display = 'none';
+
+    // Scroll to confirmation
+    document.getElementById('confirmationSection').scrollIntoView({ behavior: 'smooth' });
 }
 
 // Save ticket to localStorage
 function saveTicketToStorage(ticketData) {
     let tickets = JSON.parse(localStorage.getItem('bookedTickets') || '[]');
-    // ensure ticketData has a ticketNumber
-    ticketData.ticketNumber = ticketData.ticketNumber || generateTicketNumber();
     tickets.push(ticketData);
     localStorage.setItem('bookedTickets', JSON.stringify(tickets));
 }
@@ -1336,139 +1338,6 @@ function generateTicketNumber() {
     const timestamp = Date.now().toString().slice(-8);
     const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
     return `TKT${timestamp}${random}`;
-}
-
-// Generate a 10-character PNR (alphanumeric uppercase)
-function generatePNR() {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    let pnr = '';
-    for (let i = 0; i < 10; i++) {
-        pnr += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return pnr;
-}
-
-// Booking summary modal flow
-let currentPendingBooking = null;
-function showBookingSummaryModal(ticketData) {
-    currentPendingBooking = ticketData;
-    const modal = document.getElementById('bookingSummaryModal');
-    if (!modal) return;
-
-    // Fill modal fields
-    modal.querySelector('#summaryPNR').textContent = ticketData.pnr || '';
-    modal.querySelector('#summaryPassenger').textContent = `${ticketData.passengerName} (${ticketData.age} yrs)`;
-    modal.querySelector('#summaryFromTo').textContent = `${ticketData.from} → ${ticketData.to}`;
-    modal.querySelector('#summaryTrain').textContent = `${ticketData.trainName} (${ticketData.trainNo})`;
-    modal.querySelector('#summaryClass').textContent = `${ticketData.classType} • ${ticketData.numSeats} seat(s)`;
-    modal.querySelector('#summaryPrice').textContent = `₹${ticketData.price}`;
-    modal.querySelector('#summaryPayment').textContent = ticketData.paymentMethod || '';
-
-    modal.classList.add('modal-show');
-    modal.classList.remove('hidden');
-}
-
-function hideBookingSummaryModal() {
-    const modal = document.getElementById('bookingSummaryModal');
-    if (!modal) return;
-    modal.classList.remove('modal-show');
-    modal.classList.add('hidden');
-}
-
-// Called when user confirms booking in modal
-async function finalizeBookingFromModal() {
-    if (!currentPendingBooking) return;
-    await finalizeBooking(currentPendingBooking);
-    currentPendingBooking = null;
-    hideBookingSummaryModal();
-}
-
-// Finalize booking: save locally and attempt backend POST
-async function finalizeBooking(ticketData) {
-    // Save locally
-    saveTicketToStorage(ticketData);
-
-    // Try to send to backend (non-blocking)
-    try {
-        await fetch(`${API_BASE_URL}/book-ticket`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(ticketData)
-        });
-    } catch (err) {
-        console.warn('Backend not available or failed to save booking:', err);
-    }
-
-    // Populate and show confirmation (reuse existing flow)
-    document.getElementById('ticketNumberDisplay').textContent = `Ticket No: ${ticketData.ticketNumber}`;
-    document.getElementById('ticketName').textContent = ticketData.passengerName;
-    document.getElementById('ticketAge').textContent = `${ticketData.age} years`;
-    document.getElementById('ticketGender').textContent = ticketData.gender;
-    document.getElementById('ticketEmail').textContent = ticketData.email;
-    document.getElementById('ticketPhone').textContent = ticketData.phone;
-    document.getElementById('ticketSeats').textContent = `${ticketData.numSeats} Seat(s)`;
-    document.getElementById('ticketFrom').textContent = ticketData.from;
-    document.getElementById('ticketTo').textContent = ticketData.to;
-    document.getElementById('ticketTrain').textContent = ticketData.trainName;
-    document.getElementById('ticketTrainNo').textContent = ticketData.trainNo;
-    document.getElementById('ticketClass').textContent = ticketData.classType;
-    document.getElementById('ticketPrice').textContent = `₹${ticketData.price}`;
-
-    // Populate payment details
-    document.getElementById('ticketPaymentMethod').textContent = ticketData.paymentMethod;
-    if (ticketData.paymentDetails) {
-        document.getElementById('ticketPaymentDetails').textContent = ticketData.paymentDetails;
-        document.getElementById('ticketPaymentDetailsRow').style.display = 'flex';
-    } else {
-        document.getElementById('ticketPaymentDetailsRow').style.display = 'none';
-    }
-
-    // Generate QR code
-    generateQRCode(ticketData.ticketNumber, ticketData.passengerName, { name: ticketData.trainName, from: ticketData.from, to: ticketData.to }, ticketData.classType);
-
-    document.getElementById('confirmationSection').style.display = 'block';
-    document.getElementById('searchResults').style.display = 'none';
-    document.getElementById('quickSearchResults').style.display = 'none';
-    document.getElementById('ticketForm').style.display = 'none';
-
-    // Scroll to confirmation
-    document.getElementById('confirmationSection').scrollIntoView({ behavior: 'smooth' });
-}
-
-// Public booking helpers (aliases)
-function saveBooking(ticketData) {
-    saveTicketToStorage(ticketData);
-}
-
-function getBookings() {
-    return getBookedTickets();
-}
-
-// Delete booking by ticketNumber (PNR-based could be added)
-async function deleteBooking(ticketNumber) {
-    let tickets = JSON.parse(localStorage.getItem('bookedTickets') || '[]');
-    const filtered = tickets.filter(t => t.ticketNumber !== ticketNumber && t.pnr !== ticketNumber);
-    localStorage.setItem('bookedTickets', JSON.stringify(filtered));
-
-    // Try to delete on backend (best-effort)
-    try {
-        await fetch(`${API_BASE_URL}/cancel-ticket/${encodeURIComponent(ticketNumber)}`, { method: 'DELETE' });
-    } catch (err) {
-        // ignore
-    }
-}
-
-// Cancel booking invoked from UI
-function cancelBooking(ticketNumber) {
-    if (!confirm('Are you sure you want to cancel this booking?')) return;
-    deleteBooking(ticketNumber).then(() => {
-        showAlert('info', 'Booking Cancelled', `Booking ${ticketNumber} has been cancelled.`, 6000);
-        // Refresh bookings UI if on my-bookings page
-        if (document.getElementById('bookingsContainer')) {
-            // re-run display
-            try { displayBookedTickets(); } catch (e) { location.reload(); }
-        }
-    });
 }
 
 // Generate QR code
@@ -1766,8 +1635,7 @@ Please carry this confirmation during your journey.
 function resetBooking() {
     document.getElementById('source').value = '';
     document.getElementById('destination').value = '';
-    document.getElementById('quickSource').value = '';
-    document.getElementById('quickDestination').value = '';
+    // quick-search inputs removed
     document.getElementById('passengerName').value = '';
     document.getElementById('age').value = '';
     document.getElementById('gender').value = '';
@@ -1833,6 +1701,7 @@ function scrollToSection(sectionId) {
 
 // Go to trains page
 function goToTrainsPage() {
+    // Redirect to the dedicated trains listing page (keeps behavior consistent with previous versions)
     window.location.href = 'trains.html';
 }
 
@@ -1851,114 +1720,3 @@ function setupNavigation() {
         });
     });
 }
-
-/* ========================
-   Real-time Alerts (client-side)
-   - Provides `showAlert(type, title, message, duration)`
-   - Animated cards slide from the top and auto-dismiss
-   ======================== */
-
-const ALERTS_ROOT_ID = 'alerts-root';
-
-function showAlert(type = 'info', title = '', message = '', duration = 8000) {
-    const root = document.getElementById(ALERTS_ROOT_ID);
-    if (!root) return;
-
-    // Limit number of visible alerts
-    const MAX_ALERTS = 4;
-    const existing = root.querySelectorAll('.alert-card');
-    if (existing.length >= MAX_ALERTS) {
-        // remove the oldest (top) to make room for new bottom-right toasts
-        const first = existing[0];
-        first && first.remove();
-    }
-
-    const icons = {
-        info: 'ℹ️',
-        warning: '⚠️',
-        danger: '🚨',
-        success: '✅'
-    };
-
-    const icon = icons[type] || icons.info;
-
-    const card = document.createElement('div');
-    card.className = `alert-card alert-${type}`;
-    card.innerHTML = `
-        <div class="alert-icon">${icon}</div>
-        <div class="alert-content">
-            <div class="alert-title">${escapeHtml(title)}</div>
-            <div class="alert-message">${escapeHtml(message)}</div>
-        </div>
-        <div class="alert-actions">
-            <button class="alert-close-btn" aria-label="Close">×</button>
-        </div>
-    `;
-
-    // Append so newest appear at the bottom (natural stacking for bottom-right toasts)
-    root.appendChild(card);
-
-    // Force layout then show (triggers CSS transition)
-    requestAnimationFrame(() => {
-        card.classList.add('show');
-    });
-
-    // Close handler
-    const closeBtn = card.querySelector('.alert-close-btn');
-    const removeCard = () => {
-        card.classList.remove('show');
-        card.classList.add('hide');
-        // remove after transition
-        setTimeout(() => card.remove(), 500);
-    };
-
-    closeBtn.addEventListener('click', removeCard);
-
-    // Auto-dismiss
-    if (duration && duration > 0) {
-        setTimeout(removeCard, duration);
-    }
-}
-
-// Small utility to avoid injecting unsafe HTML
-function escapeHtml(str) {
-    if (!str && str !== 0) return '';
-    return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
-}
-
-// Simulate real-time triggers for demonstration
-function startAlertSimulation() {
-    // Example alerts requested by the user
-    setTimeout(() => {
-        showAlert('warning', 'Train seats almost full', 'Seats are running low on several popular trains — only a few left. Book now to avoid disappointment!', 10000);
-    }, 2000);
-
-    setTimeout(() => {
-        showAlert('info', 'Tatkal bookings opening soon', 'Tatkal quota opens at 10:00 AM. Keep passenger and payment details ready for faster booking.', 12000);
-    }, 7000);
-
-    setTimeout(() => {
-        showAlert('warning', 'Peak hour recommendation', 'Consider travelling after 9 PM to avoid peak-hour crowds and get better seat availability.', 10000);
-    }, 12000);
-
-    // Periodic simulated notifications (randomized every ~45-90s)
-    setInterval(() => {
-        const samples = [
-            { t: 'info', ti: 'Plan Ahead', m: 'Early morning trains usually have better availability for long routes.' },
-            { t: 'warning', ti: 'Seats Almost Full', m: 'Only a few seats left in sleeper class for Train 15001.' },
-            { t: 'info', ti: 'Tatkal Reminder', m: 'Tatkal opens tomorrow for select trains — set a reminder.' }
-        ];
-        const pick = samples[Math.floor(Math.random() * samples.length)];
-        showAlert(pick.t, pick.ti, pick.m, 9000 + Math.floor(Math.random() * 6000));
-    }, 60000);
-}
-
-// Start simulation once DOM is ready
-document.addEventListener('DOMContentLoaded', function () {
-    startAlertSimulation();
-});
